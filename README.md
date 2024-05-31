@@ -50,15 +50,16 @@ python3 run.py --content_path=../Examples/img.jpg \
 
 ## Results
 
+
 <table>
   <tr>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/edward-munch-style.jpg" alt="Edward-Munch" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/edward-munch-style.jpg" alt="Edward-Munch"  width="300" height="300"/>
       <br>
-      <sub>Edward-Munch's The Scream</sub>
+      <sub>Edward Munch's The Scream </sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_edward.gif" alt="Style Transfer Progress" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_edward.gif" alt="Style Transfer Progress"  width="300" height="300"/>
       <br>
       <sub>Style Transfer Progress</sub>
     </td>
@@ -68,27 +69,29 @@ python3 run.py --content_path=../Examples/img.jpg \
 <table>
   <tr>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/picasso-style.jpg" alt="Edward-Munch" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/picasso-style.jpg" alt="Edward-Munch"  width="300" height="300"/>
       <br>
       <sub>Picasso's Self-Potrait</sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_picasso.gif" alt="Style Transfer Progress" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_picasso.gif" alt="Style Transfer Progress"  width="300" height="300"/>
       <br>
       <sub>Style Transfer Progress</sub>
     </td>
   </tr>
 </table>
 
+
+
 <table>
   <tr>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/van-gogh-style.jpg" alt="Edward-Munch" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/van-gogh-style.jpg" alt="Edward-Munch"  width="300" height="300"/>
       <br>
       <sub>Van Gogh's Starry Night</sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_gogh.gif" alt="Style Transfer Progress" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_gogh.gif" alt="Style Transfer Progress"  width="300" height="300"/>
       <br>
       <sub>Style Transfer Progress</sub>
     </td>
