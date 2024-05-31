@@ -3,7 +3,6 @@ import json
 import argparse
 from model import NeuralStyleTransfer
 from model import trainer
-import tensorflow as tf
 
 import utils
 
