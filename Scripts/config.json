@@ -9,7 +9,7 @@
     "CONTENT_LAYERS": [
         "block5_conv2"
     ],
-    "EPOCH": 2,
+    "EPOCH": 30,
     "STEPS_PER_EPOCH": 10,
     "STYLE_WEIGHT": 0.005,
     "CONTENT_WEIGHT": 20000.0,
@@ -18,14 +18,14 @@
     "LR": 0.001,
     "BETA_1": 0.99,
     "EPSILON": 0.1,
-    "OUTPUT_DIR": "../OUTPUT_IMAGES",
-    "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/img.jpg",
+    "OUTPUT_DIR": "../anime-person-out-1",
+    "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/person.jpg",
     "STYLE_IMAGE_PATH": [
-        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Styles/van-gogh-style.jpg"
+        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/Styles/anime-style.jpg"
     ],
-    "SAVE_IMAGE_AT_EPOCH": false,
+    "SAVE_IMAGE_AT_EPOCH": true,
     "STYLES": [
-        "van-gogh-style"
+        "anime-style"
     ],
     "CURR_STYLE": "edward-munch-style"
 }
