@@ -1,0 +1,25 @@
+{
+    "STYLE_LAYERS": [
+        "block1_conv1",
+        "block2_conv1",
+        "block3_conv1",
+        "block4_conv1",
+        "block5_conv1"
+    ],
+    "CONTENT_LAYERS": [
+        "block5_conv2"
+    ],
+    "EPOCH": 10,
+    "STEPS_PER_EPOCH": 500,
+    "STYLE_WEIGHT": 0.01,
+    "CONTENT_WEIGHT": 10000.0,
+    "MAX_DIM": 512,
+    "LR": 0.02,
+    "BETA_1": 0.99,
+    "EPSILON": 0.1,
+    "OUTPUT_DIR": "../RESULTS",
+    "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Images/horse.jpg",
+    "STYLE_IMAGE_PATH": [
+        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Images/picasso-style.jpg"
+    ]
+}
