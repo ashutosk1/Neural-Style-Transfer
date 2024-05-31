@@ -59,7 +59,7 @@ python3 run.py --content_path=../Examples/img.jpg \
     <td style="vertical-align: top;">
       <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_edward.gif" alt="Style Transfer Progress" height="300"/>
       <br>
-      <sub>Style Transfer</sub>
+      <sub>Style Transfer Progress</sub>
     </td>
   </tr>
 </table>
