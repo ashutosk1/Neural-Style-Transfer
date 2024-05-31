@@ -37,6 +37,7 @@ Available Options:
 
 Sample Command
 ```
+cd ./Scripts
 python3 run.py --content_path=../Examples/img.jpg \
 --style_paths ../Examples/Styles/picasso-style.jpg \
 ../Examples/Styles/van-gogh-style.jpg \
