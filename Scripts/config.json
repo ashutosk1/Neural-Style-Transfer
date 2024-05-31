@@ -9,7 +9,7 @@
     "CONTENT_LAYERS": [
         "block5_conv2"
     ],
-    "EPOCH": 2,
+    "EPOCH": 30,
     "STEPS_PER_EPOCH": 10,
     "STYLE_WEIGHT": 0.005,
     "CONTENT_WEIGHT": 20000.0,
