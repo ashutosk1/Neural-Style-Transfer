@@ -9,17 +9,23 @@
     "CONTENT_LAYERS": [
         "block5_conv2"
     ],
-    "EPOCH": 10,
-    "STEPS_PER_EPOCH": 500,
-    "STYLE_WEIGHT": 0.01,
-    "CONTENT_WEIGHT": 10000.0,
+    "EPOCH": 2,
+    "STEPS_PER_EPOCH": 10,
+    "STYLE_WEIGHT": 0.005,
+    "CONTENT_WEIGHT": 20000.0,
+    "VARIATION_WEIGHT": 30,
     "MAX_DIM": 512,
-    "LR": 0.02,
+    "LR": 0.001,
     "BETA_1": 0.99,
     "EPSILON": 0.1,
-    "OUTPUT_DIR": "../RESULTS",
-    "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Images/horse.jpg",
+    "OUTPUT_DIR": "../OUTPUT_IMAGES",
+    "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/img.jpg",
     "STYLE_IMAGE_PATH": [
-        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Images/picasso-style.jpg"
-    ]
+        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Styles/van-gogh-style.jpg"
+    ],
+    "SAVE_IMAGE_AT_EPOCH": false,
+    "STYLES": [
+        "van-gogh-style"
+    ],
+    "CURR_STYLE": "edward-munch-style"
 }

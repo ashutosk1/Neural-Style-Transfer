@@ -68,66 +68,36 @@ class NeuralStyleTransfer(tf.keras.models.Model):
 
 def loss_fn(content_outputs, content_targets, style_outputs, style_targets, config):
     """
-    Calculates the combined loss function for style transfer. 
+    Calculates the content and style loss function for style transfer. 
     """
-    # print(f"CONTENET TARGET: {content_targets}")
-    # print(f"CONTENET OUTPUT: {content_outputs}")
-
     style_loss = tf.add_n([tf.reduce_mean((style_outputs[name]-style_targets[name])**2) for name in style_outputs.keys()])
     style_loss *= config["STYLE_WEIGHT"] / len(config["STYLE_LAYERS"])  
 
     content_loss = tf.add_n([tf.reduce_mean((content_outputs[name]-content_targets[name])**2) for name in content_outputs.keys()])
     content_loss *= config["CONTENT_WEIGHT"] / len(config["CONTENT_LAYERS"]) 
-
+    
     loss = style_loss + content_loss
     return loss
 
-        
-# @tf.function()
-# def train_step(model, optimizer, stylized_image, content_targets, style_targets, config):
-#     """
-#     Performs a single training step for the Neural Style Transfer model.
-#     This function executes a single training step by:
-#     1. Calculating the loss using the loss_fn function.
-#     2. Applying gradients to the image using the optimizer.
-#     3. Clipping the image values between 0 and 1.
-#     """
-#     with tf.GradientTape() as tape:
-#         outputs = model(stylized_image)
-#         # Get the Content and Style components of the outputs of the `model.call()` on tf.Variable.
-#         content_outputs = outputs['content']
-#         style_outputs = outputs['style']
-#         loss = loss_fn(content_outputs, content_targets, style_outputs, style_targets, config)
-#     grad = tape.gradient(loss, stylized_image)
-#     optimizer.apply_gradients([(grad, stylized_image)])
-#     stylized_image.assign(utils.clip_0_1(stylized_image))
-    
 
-# def trainer(model, content_image, style_image, config):
-#     """
-#     Performs the training loop for the Neural Style Transfer model. 
-#     """
-#     # Variable Image
-#     stylized_image = tf.Variable(content_image)
-
-#     # Static Targets
-#     content_targets = model(content_image)['content']
-#     style_targets = model(style_image)['style']
-  
-#     #Optimizer
-#     optimizer = tf.keras.optimizers.Adam(config["LR"], config["BETA_1"], config["EPSILON"])
-
-#     print(f"OPT:{optimizer}")
-
-#     step = 0
-#     for n in range(config["EPOCH"]):
-#         for m in range(config["STEPS_PER_EPOCH"]):
-#             step += 1
-#             train_step(model, optimizer, stylized_image, content_targets, style_targets, config)
-#             print(".", end='', flush=True)
+def variation_loss(stylized_image, config):
+    """
+    calculates the variation loss which will feed into `loss_fn' to get the combined loss
+    """
+    variation_loss = config["VARIATION_WEIGHT"]*tf.image.total_variation(stylized_image)
+    return variation_loss
 
 
 class TrainStep(tf.Module):
+    """
+    Performs a single training step for neural style transfer.
+    Note: Creating a seperate class of TrinStep avoids the following ValueError:
+            tf.function only supports singleton tf.Variables created once on the first call, 
+            and reused across subsequent function calls.
+        This was important so as to process the same content image with multiple styles, which
+        encountered this error because of the Optimizer - which in the backend creates a tf.Variables
+        and conflicts with re-processing of the image in the next iteration with a different style.
+    """
     def __init__(self, model, optimizer, config):
         self.model = model
         self.optimizer = optimizer
@@ -139,14 +109,19 @@ class TrainStep(tf.Module):
             outputs = self.model(stylized_image)
             content_outputs = outputs['content']
             style_outputs = outputs['style']
-            loss = loss_fn(content_outputs, content_targets, style_outputs, style_targets, self.config)
+            style_and_content_loss = loss_fn(content_outputs, content_targets, style_outputs, style_targets, self.config)
+            var_loss = variation_loss(stylized_image, self.config)
+            loss = style_and_content_loss + var_loss
         grad = tape.gradient(loss, stylized_image)
         self.optimizer.apply_gradients([(grad, stylized_image)])
         stylized_image.assign(utils.clip_0_1(stylized_image))
         return stylized_image
     
     
-def trainer(model, content_image, style_image, config, style):
+def trainer(model, content_image, style_image, config):
+    """
+    Trains the model to apply style from style_image to content_image.
+    """
     stylized_image = tf.Variable(content_image)
     content_targets = model(content_image)['content']
     style_targets = model(style_image)['style']
@@ -154,16 +129,13 @@ def trainer(model, content_image, style_image, config, style):
     optimizer = tf.keras.optimizers.Adam(config["LR"], config["BETA_1"], config["EPSILON"])
     train_step = TrainStep(model, optimizer, config)
 
+    output_dir = config["OUTPUT_DIR"]
+    os.makedirs(output_dir, exist_ok=True)
+
     step = 0
     for n in (range(config["EPOCH"])):
-        for m in range(config["STEPS_PER_EPOCH"]):
+        for _ in range(config["STEPS_PER_EPOCH"]):
             step += 1
             train_step(stylized_image, content_targets, style_targets)
             print(".", end='', flush=True)
-
-    output_dir = config["OUTPUT_DIR"]
-    os.makedirs(output_dir, exist_ok=True)
-    content_basename = os.path.basename(config["CONTENT_IMAGE_PATH"])
-    filename = os.path.join(config["OUTPUT_DIR"], f"{content_basename}-{style}.jpg")
-    tf.keras.preprocessing.image.save_img(filename, tf.squeeze(stylized_image).numpy())
-    print(f"SAVED RESULT IMAGE at: {filename}")
+        utils.save_img(stylized_image, n, config)
