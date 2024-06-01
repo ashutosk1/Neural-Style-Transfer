@@ -40,7 +40,7 @@ def main(config):
         [os.remove(f) for f in glob.glob(os.path.join(config["OUTPUT_DIR"], '*.jpg'))]
     
     if config["INPUT_TYPE"]==1:
-      [os.remove(f) for f in glob.glob(os.path.join(config["OUTPUT_TEMP_DIR"], '*.jpg'))]
+      os.remove(config["OUTPUT_TEMP_DIR"])
 
 
 if __name__=="__main__":
