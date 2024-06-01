@@ -31,7 +31,7 @@ pip install -r requirements.txt
 3. The project utilizes a CLI tool for configuration and execution.
 
 Available Options:
-& `input_type`   : Input type: 0 for image (default), 1 for video
+* `input_type`   : Input type: 0 for image (default), 1 for video
 * `content_path` : Path to the content image
 * `style_paths`  : Paths to style images (separate by spaces). Supports single-multiple style images with abs/relative paths. 
 * `output_dir`   : Output Dir to save results.
