@@ -24,9 +24,9 @@ def main(config):
       # if config["VIDEO"]:
       #   pass
         # Extract Frames
-      utils.extract_frames(config["CONTENT_IMAGE_PATH"])
+      utils.extract_frames(config["CONTENT_IMAGE_PATH"], config["OUTPUT_TEMP"])
       # Get the Frames
-      frame_files = sorted([f for f in os.listdir("/tmp/nnt-raw") if f.endswith('.jpg')])
+      frame_files = sorted([f for f in os.listdir(config["OUTPUT_TEMP"]) if f.endswith('.jpg')])
       # Process frame-by-frame
       for i, frame in enumerate(frame_files):
           print(f"\t\tframe:{i+1}/{len(frame_files)}")

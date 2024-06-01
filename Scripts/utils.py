@@ -120,7 +120,7 @@ def str_to_bool(value):
 # --------------- VIDEO -----------------------------
 
 
-def extract_frames(video_path, output_folder="/tmp/nnt-raw"):
+def extract_frames(video_path, output_folder):
     """
     Extracts frame and saves it to the output folder for future ref.
     """

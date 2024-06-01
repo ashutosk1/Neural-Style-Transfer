@@ -19,6 +19,7 @@
     "BETA_1": 0.99,
     "EPSILON": 0.1,
     "OUTPUT_DIR": "../person-picasso",
+    "OUTPUT_TEMP": "/conteny/temp/",
     "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/person.jpg",
     "STYLE_IMAGE_PATH": [
         "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/Styles/picasso-style.jpg"
