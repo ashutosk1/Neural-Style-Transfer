@@ -13,7 +13,8 @@ This uses an optimization technique where content (input image) and style (refer
 - Pre-trained VGG19: Leverages a pre-trained VGG19 model for efficient feature extraction.
 - User-Defined Style Selection: Flexibility to select any image as the style reference.
 - Multi-style Experimentation: Facilitates the application of multiple artistic styles, one at a time, to a single content image. 
-- CLI-based Experimentation: Simplifying the configuration and execution process. 
+- CLI-based Experimentation: Simplifying the configuration and execution process.
+- Support Style Transfer on Videos: Animate in your favorite style. 
 
 
 
@@ -30,6 +31,7 @@ pip install -r requirements.txt
 3. The project utilizes a CLI tool for configuration and execution.
 
 Available Options:
+* `input_type`   : Input type: 0 for image (default), 1 for video
 * `content_path` : Path to the content image
 * `style_paths`  : Paths to style images (separate by spaces). Supports single-multiple style images with abs/relative paths. 
 * `output_dir`   : Output Dir to save results.
@@ -38,14 +40,27 @@ Available Options:
 Sample Command
 ```
 cd ./Scripts
-python3 run.py --content_path=../Examples/img.jpg \
+```
+
+Style Transfer on content image
+
+```
+python3 run.py --input_type 1 --content_path=../Examples/Test/img.jpg \
 --style_paths ../Examples/Styles/picasso-style.jpg \
 ../Examples/Styles/van-gogh-style.jpg \
 ../Examples/Styles/edward-munch-style.jpg \
---output_dir ../out --save_image_at_epoch Y
+--output_dir ../out_img_dir --save_image_at_epoch Y
 ```
 
+Style transfer on content video
 
+```
+python3 run.py --input_type 1 --content_path ../Examples/Test/sample.mp4 \
+--style_paths ../Examples/Styles/van-gogh-style.jpg \
+--output_dir ../try-vid \
+--save_image_at_epoch N
+
+```
 
 
 ## Results
@@ -59,9 +74,9 @@ python3 run.py --content_path=../Examples/img.jpg \
       <sub>Edward Munch's The Scream </sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_edward.gif" alt="Style Transfer Progress"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Results/output_edward.gif" alt="Result"  width="300" height="300"/>
       <br>
-      <sub>Style Transfer Progress</sub>
+      <sub>Result</sub>
     </td>
   </tr>
 </table>
@@ -69,14 +84,14 @@ python3 run.py --content_path=../Examples/img.jpg \
 <table>
   <tr>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/picasso-style.jpg" alt="Edward-Munch"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/picasso-style.jpg" alt="Picasso"  width="300" height="300"/>
       <br>
       <sub>Picasso's Self-Potrait</sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_picasso.gif" alt="Style Transfer Progress"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Results/output_picasso.gif" alt="Result"  width="300" height="300"/>
       <br>
-      <sub>Style Transfer Progress</sub>
+      <sub>Result</sub>
     </td>
   </tr>
 </table>
@@ -86,14 +101,14 @@ python3 run.py --content_path=../Examples/img.jpg \
 <table>
   <tr>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/van-gogh-style.jpg" alt="Edward-Munch"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/van-gogh-style.jpg" alt="Van-Gogh"  width="300" height="300"/>
       <br>
       <sub>Van Gogh's Starry Night</sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_gogh.gif" alt="Style Transfer Progress"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Results/output_gogh.gif" alt="Result"  width="300" height="300"/>
       <br>
-      <sub>Style Transfer Progress</sub>
+      <sub>Result</sub>
     </td>
   </tr>
 </table>
