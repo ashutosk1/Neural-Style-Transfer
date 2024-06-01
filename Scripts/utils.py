@@ -75,13 +75,17 @@ def update_config(args, config_file="config.json"):
     # 4. Styles Identifiers
     styles = [styles.split('/')[-1].split('.')[0] for styles in style_paths]
 
+    # 5. Input Type {0 for Images (default) and 1 for videos}
+    input_type = args.input_type
+
     # Update the `config.json` with updated args for future ref. 
     update_dicts = {             
-                                 "CONTENT_IMAGE_PATH"   :  content_path,
+                                 "CONTENT_PATH"   :  content_path,
                                   "STYLE_IMAGE_PATH"    :  style_paths,
                                   "OUTPUT_DIR"          :  output_dir,
                                   "SAVE_IMAGE_AT_EPOCH" :  save_image_at_epoch,
-                                  "STYLES"              :  styles
+                                  "STYLES"              :  styles,
+                                  "INPUT_TYPE"          :  input_type
                     }
     config.update(update_dicts)
     with open(config_file, 'w') as f:
@@ -93,17 +97,20 @@ def update_config(args, config_file="config.json"):
 def save_img(image, epoch, config):
     """ Save the Output Stylized Image at the end of every Epoch if the flag is True.
     """
-    save_at_epoch = config["SAVE_IMAGE_AT_EPOCH"]
     is_final_epoch = (epoch == config["EPOCH"] - 1)
-    
+    # If Input Type is video -> save only at the end of the iteration. Set the save_at_epoch as false.
+    save_at_epoch = False if config["INPUT_TYPE"] ==1 else config["SAVE_IMAGE_AT_EPOCH"]
     if save_at_epoch or is_final_epoch:
-        content_basename = config["CONTENT_IMAGE_PATH"].split('/')[-1].split('.')[0]
+        content_basename = config["CONTENT_PATH"].split('/')[-1].split('.')[0]
         style = config["CURR_STYLE"]
-        filename = os.path.join(config["OUTPUT_DIR"], f"{content_basename}-{style}-{epoch:02d}.jpg")
-        print(f"\tEPOCH: [{epoch+1}/{config['EPOCH']}]  SAVED RESULT IMAGE AT: {filename}.")
+        if config["INPUT_TYPE"] ==1:
+                filename = os.path.join(config["OUTPUT_DIR"], f"{content_basename}-{style}-frame-{config['CURR_FRAME']:04d}.jpg")
+        else:
+                filename = os.path.join(config["OUTPUT_DIR"], f"{content_basename}-{style}-{(epoch+1):02d}.jpg")
+        print(f"\tepoch: {epoch+1}/{config['EPOCH']}\n\t\tsaved image at: {filename}.")
         tf.keras.preprocessing.image.save_img(filename, tf.squeeze(image).numpy())
     else:
-        print(f"\tEPOCH: [{epoch+1}/{config['EPOCH']}]")
+        print(f"\tepoch: {epoch+1}/{config['EPOCH']}")
 
 
 def str_to_bool(value):
@@ -118,8 +125,6 @@ def str_to_bool(value):
     
 
 # --------------- VIDEO -----------------------------
-
-
 def extract_frames(video_path, output_folder):
     """
     Extracts frame and saves it to the output folder for future ref.
@@ -142,6 +147,11 @@ def extract_frames(video_path, output_folder):
 
 
 def create_video_from_frames(frames_folder, fps, config):
-    frame_files = sorted([os.path.join(frames_folder, f) for f in os.listdir(frames_folder) if f.endswith('.jpg')])
+    """
+    Create a video from the sorted sequence of stylized frames.
+    """
+    frame_files = sorted([os.path.join(frames_folder, f) for f in os.listdir(frames_folder) if \
+                          f.endswith('.jpg')])
     clip = ImageSequenceClip(frame_files, fps=fps)
-    clip.write_videofile(os.path.join(config["OUTPUT_DIR"], f"{config['CURR_STYLE']}-out.mp4"), codec='libx264')
+    filename = os.path.join(config["OUTPUT_DIR"], f"{config['CURR_STYLE']}-out.mp4")
+    clip.write_videofile(filename, codec='libx264')

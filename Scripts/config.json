@@ -9,7 +9,7 @@
     "CONTENT_LAYERS": [
         "block5_conv2"
     ],
-    "EPOCH": 50,
+    "EPOCH": 2,
     "STEPS_PER_EPOCH": 10,
     "STYLE_WEIGHT": 0.005,
     "CONTENT_WEIGHT": 20000.0,
@@ -18,15 +18,16 @@
     "LR": 0.001,
     "BETA_1": 0.99,
     "EPSILON": 0.1,
-    "OUTPUT_DIR": "../person-picasso",
-    "OUTPUT_TEMP": "/conteny/temp/",
-    "CONTENT_IMAGE_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/person.jpg",
+    "OUTPUT_DIR": "../try-vid",
+    "OUTPUT_TEMP_DIR": "../temp",
+    "CONTENT_PATH": "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/Test/sample.mp4",
     "STYLE_IMAGE_PATH": [
-        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/Styles/picasso-style.jpg"
+        "/home/ashutosk/DL_NEURAL_STYLE_TRANSFER/Neural-Style-Transfer/Examples/Styles/van-gogh-style.jpg"
     ],
     "SAVE_IMAGE_AT_EPOCH": true,
     "STYLES": [
-        "picasso-style"
+        "van-gogh-style"
     ],
-    "CURR_STYLE": "edward-munch-style"
+    "CURR_STYLE": "edward-munch-style",
+    "INPUT_TYPE": 1
 }
