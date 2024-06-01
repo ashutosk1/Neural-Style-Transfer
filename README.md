@@ -13,7 +13,8 @@ This uses an optimization technique where content (input image) and style (refer
 - Pre-trained VGG19: Leverages a pre-trained VGG19 model for efficient feature extraction.
 - User-Defined Style Selection: Flexibility to select any image as the style reference.
 - Multi-style Experimentation: Facilitates the application of multiple artistic styles, one at a time, to a single content image. 
-- CLI-based Experimentation: Simplifying the configuration and execution process. 
+- CLI-based Experimentation: Simplifying the configuration and execution process.
+- Support Style Transfer on Videos: Animate in your favorite style. 
 
 
 
@@ -73,9 +74,9 @@ python3 run.py --input_type 1 --content_path ../Examples/Test/sample.mp4 \
       <sub>Edward Munch's The Scream </sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_edward.gif" alt="Style Transfer Progress"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Results/output_edward.gif" alt="Result"  width="300" height="300"/>
       <br>
-      <sub>Style Transfer Progress</sub>
+      <sub>Result</sub>
     </td>
   </tr>
 </table>
@@ -83,14 +84,14 @@ python3 run.py --input_type 1 --content_path ../Examples/Test/sample.mp4 \
 <table>
   <tr>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/picasso-style.jpg" alt="Edward-Munch"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Styles/picasso-style.jpg" alt="Picasso"  width="300" height="300"/>
       <br>
       <sub>Picasso's Self-Potrait</sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_picasso.gif" alt="Style Transfer Progress"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Results/output_picasso.gif" alt="Result"  width="300" height="300"/>
       <br>
-      <sub>Style Transfer Progress</sub>
+      <sub>Result</sub>
     </td>
   </tr>
 </table>
@@ -105,9 +106,9 @@ python3 run.py --input_type 1 --content_path ../Examples/Test/sample.mp4 \
       <sub>Van Gogh's Starry Night</sub>
     </td>
     <td style="vertical-align: top;">
-      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/output_gogh.gif" alt="Style Transfer Progress"  width="300" height="300"/>
+      <img src="https://raw.githubusercontent.com/ashutosk1/Neural-Style-Transfer/main/Examples/Results/output_gogh.gif" alt="Result"  width="300" height="300"/>
       <br>
-      <sub>Style Transfer Progress</sub>
+      <sub>Result</sub>
     </td>
   </tr>
 </table>
