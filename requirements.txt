@@ -1,1 +1,5 @@
+moviepy==1.0.3
+opencv_python==4.9.0.80
+opencv_python_headless==4.9.0.80
+Pillow==10.3.0
 tensorflow==2.16.1
