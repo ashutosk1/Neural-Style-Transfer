@@ -2,6 +2,10 @@ import json
 import os
 import tensorflow as tf
 
+import cv2
+import os
+from PIL import Image
+from moviepy.editor import ImageSequenceClip
 
 def gram_matrix(input_tensor):
     """ 
@@ -111,3 +115,33 @@ def str_to_bool(value):
         return False
     else:
         raise ValueError('Boolean value expected (Y/N).')
+    
+
+# --------------- VIDEO -----------------------------
+
+
+def extract_frames(video_path, output_folder="/tmp/nnt-raw"):
+    """
+    Extracts frame and saves it to the output folder for future ref.
+    """
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    
+    cap = cv2.VideoCapture(video_path)
+    count = 0
+
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        cv2.imwrite(f"{output_folder}/frame_{count:04d}.jpg", frame)
+        count += 1
+    
+    cap.release()
+
+
+def create_video_from_frames(frames_folder, fps, config):
+    frame_files = sorted([os.path.join(frames_folder, f) for f in os.listdir(frames_folder) if f.endswith('.jpg')])
+    clip = ImageSequenceClip(frame_files, fps=fps)
+    clip.write_videofile(os.path.join(config["OUTPUT_DIR"], f"{config['CURR_STYLE']}-out.mp4"), codec='libx264')
